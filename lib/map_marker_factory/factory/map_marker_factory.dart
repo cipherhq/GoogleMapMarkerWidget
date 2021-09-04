@@ -7,8 +7,9 @@ import 'package:google_map_marker_widget/map_marker_factory/widget/map_marker.da
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapMarkerFactory {
-  Future<Set<Marker>> getMapMarker(
-      List<MarkerModel> markerModel, BuildContext buildContext) async {
+
+  Future<void> getMapMarker(
+      List<MarkerModel> markerModel, BuildContext buildContext, Function onMarkerCreated) async {
     log("getMapMarker");
     Set<Marker> markers = Set();
 
@@ -28,6 +29,7 @@ class MapMarkerFactory {
     } catch (ex, stack) {
       debugPrintStack(stackTrace: stack, label: ex.toString());
     }
-    return markers;
+
+    onMarkerCreated(markers);
   }
 }
