@@ -3,7 +3,7 @@
 A new Flutter project to create dynamic google map markers using widgets.
 
 ## Getting Started
-### To setup markers set:
+### 1. To get markers set:
 ```dart
   Future<void> setMapMarker() async {
     MapMarkerFactory mapMarkerFactory = MapMarkerFactory();
@@ -31,3 +31,22 @@ A new Flutter project to create dynamic google map markers using widgets.
 
   }
 ```
+### 2. Use that Set<Marker> inside GoogleMap widget:
+
+```dart
+GoogleMap(
+                  padding: EdgeInsets.only(top: 500.h, bottom: 300.h),
+                  mapType: MapType.normal,
+                  myLocationEnabled: true,
+                  myLocationButtonEnabled: true,
+                  zoomGesturesEnabled: true,
+                  zoomControlsEnabled: true,
+                  initialCameraPosition: _kGooglePlex,
+                  markers: markerSet,
+                  onMapCreated: (GoogleMapController controller) {
+                    setMapMarker();
+                    _controller.complete(controller);
+                  },
+                ),
+```  
+
